@@ -596,23 +596,23 @@ def refresh_page():
     else:
         st.session_state['is_updating'] = True
 
-def init_session_state(check_value):
-    if(check_value):
-            st.session_state['rows'] = [
-                {"제목": "", "요청": "", "파일": "", "데이터": "","파일정보":"1" }
-                for _ in range(st.session_state['num_requests'])
-            ]    
-            st.session_state['html_report'] = ""
+def init_session_state(check_value, folderlist_init_value):
+    if check_value:
+        st.session_state['rows'] = [
+            {"제목": "", "요청": "", "파일": "", "데이터": "", "파일정보": "1"}
+            for _ in range(st.session_state['num_requests'])
+        ]
+        st.session_state['html_report'] = ""
     else:
         if 'selected_folder_name' not in st.session_state:
             st.session_state['selected_folder_name'] = folderlist_init_value
-        if 'folder_list_option' not in st.session_state:       
+        if 'folder_list_option' not in st.session_state:
             st.session_state['folder_list_option'] = folderlist_init_value
-        if 'upload_folder' not in st.session_state:        
-            st.session_state['upload_folder'] = "uploadFiles" 
-        if 'selected_folder_index' not in st.session_state:    
+        if 'upload_folder' not in st.session_state:
+            st.session_state['upload_folder'] = "uploadFiles"
+        if 'selected_folder_index' not in st.session_state:
             st.session_state['selected_folder_index'] = 0
-        if 'new_folder_text' not in st.session_state:    
+        if 'new_folder_text' not in st.session_state:
             st.session_state['new_folder_text'] = ""
 
 def save_html_response(html_content, folder_name):
@@ -640,7 +640,7 @@ menu = st.sidebar.selectbox(
     ("보고서 작성 및 AI분석", "기간별 보고서 AI분석")
 )
 
-# 각 메뉴에 따른 페이지 전환
+# main 함수에서 init_session_state 호출 부분
 def home():
     st.title("보고서 작성 및 AI분석")
     # GitHub 정보가 있는지 확인하고 파일 업로드 객체를 출력
@@ -653,7 +653,7 @@ def home():
     #Session_state 변수 초기화
     folderlist_init_value = "주제를 선택하세요."
     # 세션 상태에 각 변수 없다면 초기화
-    init_session_state(False)
+    init_session_state(False, folderlist_init_value)
     refresh_page()
          
         
