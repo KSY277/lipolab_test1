@@ -74,25 +74,44 @@ def load_env_info():
     # GitHub 정보가 설정되었는지 확인하고 세션 상태 반영
     return github_set
 
-
+import datetime
 
 # GitHub에서 unloadFiles 하위의 폴더 리스트를 가져오는 함수
 def get_folder_list_from_github(repo, branch, token, base_folder='uploadFiles'):
     url = f"https://api.github.com/repos/{repo}/contents/{base_folder}?ref={branch}"
     headers = {"Authorization": f"token {token}"}
     response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        folders = [item['name'] for item in response.json() if item['type'] == 'dir']
-        return folders
-    else:
-        st.error("폴더 리스트를 가져오지 못했습니다. 저장소 정보나 토큰을 확인하세요.")
+    
+    # 폴더가 없을 경우 폴더를 생성하고 임의의 파일을 생성
+    if response.status_code == 404:
+        st.warning(f"'{base_folder}' 폴더가 존재하지 않습니다. 폴더를 생성합니다.")
+        folder_created = create_new_folder_in_github(repo, base_folder, token, branch)
+        
+        # 폴더 생성 후 임의의 파일 업로드
+        if folder_created:
+            st.info(f"'{base_folder}' 폴더가 생성되었습니다. 임의의 파일을 업로드합니다.")
+            random_file_content = f"자동 생성된 파일 - {datetime.datetime.now()}"
+            file_name = "example_file.txt"
+            upload_file_to_github(repo, base_folder, file_name, random_file_content.encode(), token, branch)
+        else:
+            st.error("폴더 생성에 실패했습니다.")
         return []
 
+    elif response.status_code == 200:
+        try:
+            folders = [item['name'] for item in response.json() if item['type'] == 'dir']
+            return folders
+        except json.JSONDecodeError:
+            st.error("JSON 응답을 파싱하는 중 오류가 발생했습니다.")
+            return []
+    else:
+        st.error(f"폴더 리스트를 가져오지 못했습니다. 상태 코드: {response.status_code}")
+        return []
 
 # GitHub에 새로운 폴더를 생성하는 함수
 def create_new_folder_in_github(repo, folder_name, token, branch='main'):
-    base_folder = "uploadFiles"
-    folder_path = f"{base_folder}/{folder_name}/.gitkeep"  # Git에서 빈 폴더를 유지하는 방법 중 하나인 .gitkeep 파일 사용
+    base_folder = folder_name
+    folder_path = f"{base_folder}/.gitkeep"  # Git에서 빈 폴더를 유지하는 방법 중 하나인 .gitkeep 파일 사용
     url = f"https://api.github.com/repos/{repo}/contents/{folder_path}"
     headers = {"Authorization": f"token {token}"}
     
@@ -113,6 +132,39 @@ def create_new_folder_in_github(repo, folder_name, token, branch='main'):
     else:
         st.error(f"폴더 생성 실패: {response.status_code}")
         return False
+
+# GitHub에 파일 업로드 함수 (덮어쓰기 포함)
+def upload_file_to_github(repo, folder_name, file_name, file_content, token, branch='main', sha=None):
+    create_github_folder_if_not_exists(repo, folder_name, token, branch)
+    encoded_file_name = urllib.parse.quote(file_name)
+    url = f"https://api.github.com/repos/{repo}/contents/{folder_name}/{encoded_file_name}"
+    headers = {
+        "Authorization": f"token {token}",
+        "Content-Type": "application/json"
+    }
+
+    content_encoded = base64.b64encode(file_content).decode('utf-8')
+
+    data = {
+        "message": f"Upload {file_name}",
+        "content": content_encoded,
+        "branch": branch
+    }
+
+    if sha:
+        data["sha"] = sha
+
+    response = requests.put(url, json=data, headers=headers)
+
+    if response.status_code in [200, 201]:
+        st.success(f"{file_name} 파일이 성공적으로 업로드(덮어쓰기) 되었습니다.")
+    else:
+        st.error(f"파일 업로드에 실패했습니다: {response.status_code}")
+        st.error(response.json())
+
+
+
+
       
 # 다양한 파일 형식에서 데이터를 추출하는 함수
 def extract_data_from_file(file_content, file_type):
@@ -253,34 +305,6 @@ def get_file_sha(repo, file_path, token, branch='main'):
     else:
         return None
 
-# GitHub에 파일 업로드 함수 (덮어쓰기 포함)
-def upload_file_to_github(repo, folder_name, file_name, file_content, token, branch='main', sha=None):
-    create_github_folder_if_not_exists(repo, folder_name, token, branch)
-    encoded_file_name = urllib.parse.quote(file_name)
-    url = f"https://api.github.com/repos/{repo}/contents/{folder_name}/{encoded_file_name}"
-    headers = {
-        "Authorization": f"token {token}",
-        "Content-Type": "application/json"
-    }
-
-    content_encoded = base64.b64encode(file_content).decode('utf-8')
-
-    data = {
-        "message": f"Upload {file_name}",
-        "content": content_encoded,
-        "branch": branch
-    }
-
-    if sha:
-        data["sha"] = sha
-
-    response = requests.put(url, json=data, headers=headers)
-
-    if response.status_code in [200, 201]:
-        st.success(f"{file_name} 파일이 성공적으로 업로드(덮어쓰기) 되었습니다.")
-    else:
-        st.error(f"파일 업로드에 실패했습니다: {response.status_code}")
-        st.error(response.json())
 
 # GitHub에서 파일을 다운로드하는 함수
 def get_file_from_github(repo, branch, filepath, token):
