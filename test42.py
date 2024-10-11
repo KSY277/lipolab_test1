@@ -644,6 +644,33 @@ def extract_dates_from_filenames(file_list):
                 pass  # 날짜 형식이 잘못된 경우 건너뜀
     return dates
 
+def extract_dates_from_filenames(file_list):
+    # 파일명에서 날짜 추출 (YYYYMMDDHHMMSS 형식 가정, 여기서 YYYYMMDD 부분만 추출)
+    dates = {}
+    date_pattern = re.compile(r'\d{8}')  # YYYYMMDD 부분만 추출
+    for file_name in file_list:
+        match = date_pattern.search(file_name)
+        if match:
+            try:
+                date_str = match.group()  # 'YYYYMMDD' 부분 추출
+                date = datetime.datetime.strptime(date_str, "%Y%m%d").date()  # 문자열을 날짜 형식으로 변환
+                dates[file_name] = date
+            except ValueError:
+                pass  # 날짜 형식이 잘못된 경우 건너뜀
+    return dates
+
+def get_html_file_content_from_github(file_path, repo, branch, token):
+    """GitHub에서 HTML 파일 내용을 가져오는 함수"""
+    encoded_file_path = urllib.parse.quote(file_path)
+    url = f"https://api.github.com/repos/{repo}/contents/{encoded_file_path}?ref={branch}"
+    headers = {"Authorization": f"token {token}"}
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        return BytesIO(requests.get(response.json()['download_url']).content).read().decode('utf-8')
+    else:
+        st.error(f"파일을 가져오지 못했습니다: {file_path}")
+        return None
     
 # Backend 기능 구현 끝 ---
 
@@ -1017,68 +1044,75 @@ def about():
     st.title("기간별 보고서 AI분석")
     # GitHub 정보가 있는지 확인하고 파일 업로드 객체를 출력
     github_info_loaded = load_env_info()
-    
-    #Session_state 변수 초기화
+
     folderlist_init_value = "주제를 선택하세요."
-    # 세션 상태에 각 변수 없다면 초기화
     init_session_state(False, folderlist_init_value)
     refresh_page()
-    
-    # 1 프레임
-    # 보고서 타이틀
+
     report_title = "보고서 자동 완성"
     if 'selected_folder_name' in st.session_state:
         if st.session_state['selected_folder_name'] != folderlist_init_value:
-            report_title = " [" + st.session_state['selected_folder_name'] + "] 보고서"
-    st.subheader("척척하나 - " + report_title)
+            report_title = f" [{st.session_state['selected_folder_name']}] 보고서"
+    st.subheader(f"척척하나 - {report_title}")
     
     if github_info_loaded:
-        col1 = st.columns([0.5])[0]  # 첫 번째 열 선택
-      
+        col1 = st.columns([0.5])[0]
         with col1:
             folder_list = get_folder_list_from_github(st.session_state['github_repo'], st.session_state['github_branch'], st.session_state['github_token'])
-            
-            # 'selected_folder'가 folder_list에 있을 때만 index 설정
-            selected_index = st.session_state['selected_folder_index']
-            if st.session_state['selected_folder_name'] in folder_list:
-                selected_index = folder_list.index(st.session_state['selected_folder_name']) + 1
-            
-            st.session_state['selected_folder_index'] = selected_index
-            st.session_state['folder_list_option'] = [folderlist_init_value] + folder_list
-            
-            # 폴더 선택 selectbox 생성
-            selected_folder = st.selectbox(
-                "보고서 주제 리스트",
-                options=st.session_state['folder_list_option'],
-                index=st.session_state['selected_folder_index'],
-                key="selected_folder"
-            )
-            
-            # 파일 업로드와 요청사항 리스트의 기본 폴더 설정
-            if selected_folder != "주제를 선택하세요.":
+            selected_folder = st.selectbox("보고서 주제 리스트", options=[folderlist_init_value] + folder_list, key="selected_folder")
+
+            if selected_folder != folderlist_init_value:
                 st.session_state['upload_folder'] = f"uploadFiles/{selected_folder}"
-                st.session_state['selected_folder_name'] = f"{selected_folder}"
+                st.session_state['selected_folder_name'] = selected_folder
                 refresh_page()
                 
-                # 폴더 내 파일 이름에서 날짜 가져오기
                 file_list = get_github_files(st.session_state['github_repo'], st.session_state['github_branch'], st.session_state['github_token'])
                 dates = extract_dates_from_filenames(file_list)
-                
+
                 if dates:
-                    # 가장 이른 날짜와 가장 늦은 날짜를 선택
-                    min_date = min(dates)
-                    max_date = max(dates)
-                    
+                    min_date = min(dates.values())
+                    max_date = max(dates.values())
+
                     st.write(f"선택된 폴더: {selected_folder}")
                     
-                    # 시작일과 종료일 선택 버튼 생성
                     start_date = st.date_input("시작일", min_date)
                     end_date = st.date_input("종료일", max_date)
-                    
+
                     if start_date > end_date:
                         st.error("종료일은 시작일보다 빠를 수 없습니다.")
-                else:
-                    st.warning(f"{selected_folder} 폴더에는 날짜 형식이 포함된 파일이 없습니다.")
+                    else:
+                        # 선택된 기간 내의 보고서 필터링
+                        selected_files = [file_name for file_name, date in dates.items() if start_date <= date <= end_date]
+                        
+                        if selected_files:
+                            st.write(f"선택된 기간 내의 보고서 수: {len(selected_files)}")
+                            if st.button("비교분석"):
+                                # 선택된 HTML 보고서 내용을 LLM을 통해 비교분석
+                                html_reports = ""
+                                for file in selected_files:
+                                    content = get_html_file_content_from_github(file, st.session_state['github_repo'], st.session_state['github_branch'], st.session_state['github_token'])
+                                    if content:
+                                        html_reports += f"Report: {file}\n{content}\n\n"
+                                
+                                if html_reports:
+                                    # LLM 요청을 execute_llm_request로 처리
+                                    prompt = f"""
+                                    I have several HTML reports that I would like you to compare and analyze. These reports are as follows:
+                                    
+                                    {html_reports}
+                                    
+                                    Please provide a detailed comparison between these reports, identifying key differences, similarities, and improvements or degradation in the reports' contents. Also, suggest any possible areas for improvement.
+                                    """
+                                    analysis_result = execute_llm_request(st.session_state["openai_api_key"], prompt)
+                                    if analysis_result:
+                                        st.write("## 비교 분석 결과")
+                                        for idx, result in enumerate(analysis_result):
+                                            st.text_area(f"LLM 분석 결과 {idx + 1}:", result, height=300)
+                                else:
+                                    st.error("HTML 보고서를 불러오는 중 문제가 발생했습니다.")
+                        else:
+                            st.warning("선택된 기간 내에 보고서 파일이 없습니다.")
+
 
   
 
