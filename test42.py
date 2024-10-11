@@ -1018,10 +1018,6 @@ def about():
     # GitHub 정보가 있는지 확인하고 파일 업로드 객체를 출력
     github_info_loaded = load_env_info()
     
-    # 업로드 가능한 파일 크기 제한 (100MB)
-    MAX_FILE_SIZE_MB = 100
-    MAX_FILE_SIZE_BYTES = 100 * 1024 * 1024
-    
     #Session_state 변수 초기화
     folderlist_init_value = "주제를 선택하세요."
     # 세션 상태에 각 변수 없다면 초기화
@@ -1037,7 +1033,7 @@ def about():
     st.subheader("척척하나 - " + report_title)
     
     if github_info_loaded:
-        col1 = st.columns([0.5])[0]  # 수정된 부분: 첫 번째 열 선택
+        col1 = st.columns([0.5])[0]  # 첫 번째 열 선택
       
         with col1:
             folder_list = get_folder_list_from_github(st.session_state['github_repo'], st.session_state['github_branch'], st.session_state['github_token'])
@@ -1063,6 +1059,26 @@ def about():
                 st.session_state['upload_folder'] = f"uploadFiles/{selected_folder}"
                 st.session_state['selected_folder_name'] = f"{selected_folder}"
                 refresh_page()
+                
+                # 폴더 내 파일 이름에서 날짜 가져오기
+                file_list = get_github_files(st.session_state['github_repo'], st.session_state['github_branch'], st.session_state['github_token'])
+                dates = extract_dates_from_filenames(file_list)
+                
+                if dates:
+                    # 가장 이른 날짜와 가장 늦은 날짜를 선택
+                    min_date = min(dates)
+                    max_date = max(dates)
+                    
+                    st.write(f"선택된 폴더: {selected_folder}")
+                    
+                    # 시작일과 종료일 선택 버튼 생성
+                    start_date = st.date_input("시작일", min_date)
+                    end_date = st.date_input("종료일", max_date)
+                    
+                    if start_date > end_date:
+                        st.error("종료일은 시작일보다 빠를 수 없습니다.")
+                else:
+                    st.warning(f"{selected_folder} 폴더에는 날짜 형식이 포함된 파일이 없습니다.")
 
   
 
