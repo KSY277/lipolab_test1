@@ -997,10 +997,30 @@ def home():
             st.write()    
 
 def about():
-    st.title("기간별 보고서 AI분석")
-    # 보고서 주제 및 폴더 선택, 새 폴더 만들기
+    st.title("보고서 작성 및 AI분석")
+    # GitHub 정보가 있는지 확인하고 파일 업로드 객체를 출력
+    github_info_loaded = load_env_info()
+    
+    # 업로드 가능한 파일 크기 제한 (100MB)
+    MAX_FILE_SIZE_MB = 100
+    MAX_FILE_SIZE_BYTES = 100 * 1024 * 1024
+    
+    #Session_state 변수 초기화
+    folderlist_init_value = "주제를 선택하세요."
+    # 세션 상태에 각 변수 없다면 초기화
+    init_session_state(False, folderlist_init_value)
+    refresh_page()
+         
+        
+    # 1 프레임
+    # 보고서 타이틀틀
+    report_title = "보고서 자동 완성"
+    if 'selected_folder_name' in st.session_state:
+        if st.session_state['selected_folder_name'] != folderlist_init_value:
+            report_title = " [" + st.session_state['selected_folder_name'] + "] 보고서"
+    st.subheader("척척하나 - " +report_title)
     if github_info_loaded:
-        col1, col2, col3 = st.columns([0.5, 0.3, 0.2])
+        col1 = st.columns([0.5])
       
         with col1:
             folder_list = get_folder_list_from_github(st.session_state['github_repo'], st.session_state['github_branch'], st.session_state['github_token'])
