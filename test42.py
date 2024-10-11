@@ -477,8 +477,8 @@ def execute_llm_request(api_key, prompt):
     responses = []
 
     try:
-        # 텍스트 길이 제한 확인 (예: 4000자로 제한)
-        if len(prompt) > 4000:
+        # 텍스트 길이 제한 확인 (예: 1000000자로 제한)
+        if len(prompt) > 1000000:
             st.error("프롬프트 글자 수 초과로 LLM 연동에 실패했습니다.")
             return None
 
