@@ -631,12 +631,31 @@ def save_html_response(html_content, folder_name):
 # Backend 기능 구현 끝 ---
 
 # Frontend 기능 구현 시작 ---
-# 사이드바 메뉴 생성
+import streamlit as st
+
+# 사이드바에서 메뉴 선택
 st.sidebar.title("Navigation")
-menu = st.sidebar.radio(
-    "Go to",
-    ("Home", "About", "Contact")
+menu = st.sidebar.selectbox(
+    "Select a page",
+    ("Home", "About")
 )
+
+# 각 메뉴에 따른 페이지 전환
+def home():
+    st.title("Home")
+    st.write("Welcome to the home page!")
+
+def about():
+    st.title("About")
+    st.write("This is an example application to demonstrate page navigation.")
+
+# 메뉴에 따라 해당하는 함수 호출
+if menu == "Home":
+    home()
+elif menu == "About":
+    about()
+
+
 
 
 # GitHub 정보가 있는지 확인하고 파일 업로드 객체를 출력
