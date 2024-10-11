@@ -80,36 +80,12 @@ def load_env_info():
 def get_folder_list_from_github(repo, branch, token, base_folder='uploadFiles'):
     url = f"https://api.github.com/repos/{repo}/contents/{base_folder}?ref={branch}"
     headers = {"Authorization": f"token {token}"}
-    
     response = requests.get(url, headers=headers)
-    
-    # 응답 상태 코드가 200(성공)이 아닌 경우 에러 처리
     if response.status_code == 200:
-        try:
-            # GitHub API 응답을 JSON으로 파싱
-            json_response = response.json()
-
-            # API 응답을 로깅하여 확인
-            st.write("GitHub 응답:", json_response)
-
-            # 응답이 리스트 형식이 아니거나 리스트 내부에 예상한 키가 없으면 오류 처리
-            if isinstance(json_response, list):
-                folders = [item['name'] for item in json_response if item.get('type') == 'dir']
-                return folders
-            else:
-                st.error("GitHub 응답이 예상한 형식이 아닙니다. 응답 내용:", json_response)
-                return []
-        except json.JSONDecodeError:
-            st.error("JSON 응답을 파싱하는 중 오류가 발생했습니다.")
-            return []
-    elif response.status_code == 403:
-        st.error("접근 권한이 없습니다. GitHub 토큰이나 저장소 설정을 확인하세요.")
-        return []
-    elif response.status_code == 404:
-        st.error("지정된 폴더를 찾을 수 없습니다. 저장소 또는 브랜치 설정을 확인하세요.")
-        return []
+        folders = [item['name'] for item in response.json() if item['type'] == 'dir']
+        return folders
     else:
-        st.error(f"폴더 리스트를 가져오지 못했습니다. 상태 코드: {response.status_code}")
+        st.error("폴더 리스트를 가져오지 못했습니다. 저장소 정보나 토큰을 확인하세요.")
         return []
 
 
