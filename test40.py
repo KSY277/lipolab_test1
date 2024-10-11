@@ -73,17 +73,35 @@ def load_env_info():
     # GitHub 정보가 설정되었는지 확인하고 세션 상태 반영
     return github_set
 
+        
 # GitHub에서 unloadFiles 하위의 폴더 리스트를 가져오는 함수
 def get_folder_list_from_github(repo, branch, token, base_folder='uploadFiles'):
     url = f"https://api.github.com/repos/{repo}/contents/{base_folder}?ref={branch}"
     headers = {"Authorization": f"token {token}"}
     response = requests.get(url, headers=headers)
+    
+    # 응답 상태 코드가 200(성공)이 아닌 경우 에러 처리
     if response.status_code == 200:
-        folders = [item['name'] for item in response.json() if item['type'] == 'dir']
-        return folders
-    else:
-        st.error("폴더 리스트를 가져오지 못했습니다. 저장소 정보나 토큰을 확인하세요.")
+        try:
+            # GitHub API 응답을 JSON으로 파싱
+            json_response = response.json()
+            if isinstance(json_response, list):
+                folders = [item['name'] for item in json_response if item.get('type') == 'dir']
+                return folders
+            else:
+                st.error("GitHub 응답이 예상한 형식이 아닙니다.")
+                return []
+        except json.JSONDecodeError:
+            st.error("JSON 응답을 파싱하는 중 오류가 발생했습니다.")
+            return []
+    elif response.status_code == 403:
+        st.error("접근 권한이 없습니다. GitHub 토큰이나 저장소 설정을 확인하세요.")
         return []
+    else:
+        st.error(f"폴더 리스트를 가져오지 못했습니다. 상태 코드: {response.status_code}")
+        return []
+
+
 
 # GitHub에 새로운 폴더를 생성하는 함수
 def create_new_folder_in_github(repo, folder_name, token, branch='main'):
