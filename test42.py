@@ -637,22 +637,20 @@ import streamlit as st
 st.sidebar.title("Navigation")
 menu = st.sidebar.selectbox(
     "Select a page",
-    ("Home", "About")
+    ("보고서 작성 및 AI분석", "기간별 보고서 AI분석")
 )
 
 # 각 메뉴에 따른 페이지 전환
 def home():
-    st.title("Home")
-    st.write("Welcome to the home page!")
+    st.title("보고서 작성 및 AI분석")
 
 def about():
-    st.title("About")
-    st.write("This is an example application to demonstrate page navigation.")
+    st.title("기간별 보고서 AI분석")
 
 # 메뉴에 따라 해당하는 함수 호출
-if menu == "Home":
+if menu == "보고서 작성 및 AI분석":
     home()
-elif menu == "About":
+elif menu == "기간별 보고서 AI분석":
     about()
 
 
