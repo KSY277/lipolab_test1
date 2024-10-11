@@ -631,6 +631,13 @@ def save_html_response(html_content, folder_name):
 # Backend 기능 구현 끝 ---
 
 # Frontend 기능 구현 시작 ---
+# 사이드바 메뉴 생성
+st.sidebar.title("Navigation")
+menu = st.sidebar.radio(
+    "Go to",
+    ("Home", "About", "Contact")
+)
+
 
 # GitHub 정보가 있는지 확인하고 파일 업로드 객체를 출력
 github_info_loaded = load_env_info()
