@@ -1,0 +1,463 @@
+<div style='border: 2px solid #cccccc; padding: 2px;'>```html
+<h3>1. 클라이언트보안 시스템현황</h3>
+<div style='text-indent: 20px;'>
+    <table class='table table-bordered' style='border-spacing: 0; border-collapse: collapse; width: 100%;'>
+        <thead>
+            <tr>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>구분</th>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>수량</th>
+                <th colspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>정상가동 여부</th>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>비고</th>
+            </tr>
+            <tr>
+                <th style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>System</th>
+                <th style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>Application</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>하나쉴드</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>60.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>BMGuard</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>3.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>보안포탈</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>6.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>하나보안운영프로세스</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>4.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>문서보안</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>9.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>안랩EPP</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>10.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'>백신 엔진 버전 : 2024.09.06.01</td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>리눅스 서버 백신</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>4.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>검역소</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>10.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>자료연계</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>32.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>자료교환</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>14.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>단말권한관리</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>22.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>오피스M</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>1.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>ExScanner</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>1.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>ESSM</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>합계</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>178.0</td>
+                <td colspan="2" style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>2. 네트워크보안 시스템현황</h3>
+<div style='text-indent: 20px;'>
+    <table class='table table-bordered' style='border-spacing: 0; border-collapse: collapse; width: 100%;'>
+        <thead>
+            <tr>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>구분</th>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>수량</th>
+                <th colspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>정상가동 여부</th>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>비고</th>
+            </tr>
+            <tr>
+                <th style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>System</th>
+                <th style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>Application</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>Firewall(침입차단시스템)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>340.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>VPN</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>144.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'>SSL-VPN 사용자 일일점검 결과 - 변동사항없음</td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>IPS(침입방지시스템)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>17.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>DDoS 대응장비</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>6.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>WebKeeper(유해사이트 차단시스템)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>11.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>WAF(웹방화벽)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>7.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>WIPS(무선랜침입방지시스템)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>25.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>NAC(네트워크 접근통제시스템)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>12.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>FMG, FAZ, TAMS</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>10.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>스마트창구 및 그룹포탈, MDM</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>6.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>SSL-VPN</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>4.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>FIREMON</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>6.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>통합보안로그관리시스템</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>13.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>합계</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>601.0</td>
+                <td colspan="2" style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>3. 시스템보안 시스템현황</h3>
+<div style='text-indent: 20px;'>
+    <table class='table table-bordered' style='border-spacing: 0; border-collapse: collapse; width: 100%;'>
+        <thead>
+            <tr>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>구분</th>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>수량</th>
+                <th colspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>정상가동 여부</th>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>비고</th>
+            </tr>
+            <tr>
+                <th style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>System</th>
+                <th style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>Application</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>계정통제감사</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>5.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>마이데이터 2EA</td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>DB보안</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>4.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>마이데이터 2EA</td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>비밀번호변경관리</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:bold; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>mOTP</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>서버보안(관리)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>3.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>마이데이터 1EA</td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>EPP</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>인터넷EPP 1EA 제외</td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>백업</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2.0</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>OS백업(11.7버전) 1EA 제외</td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>합계</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>20.0</td>
+                <td colspan="2" style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>4. 디지털보안 시스템현황</h3>
+<div style='text-indent: 20px;'>
+    <table class='table table-bordered' style='border-spacing: 0; border-collapse: collapse; width: 100%;'>
+        <thead>
+            <tr>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>구분</th>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>수량</th>
+                <th colspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>정상가동 여부</th>
+                <th rowspan="2" style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>비고</th>
+            </tr>
+            <tr>
+                <th style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>System</th>
+                <th style='text-align:center; font-weight:bold; background-color:#E7E6E6; border: 1px solid black;'>Application</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>공동인증</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>손님용OTP</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>ARS 2채널</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>3</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>SSG(그룹)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>SSB(은행)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>전사표준암호화</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>1</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>FDS</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>12</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:left; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>단말정보수집</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>3</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>바이오(장정맥)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2(0)</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>얼굴인증 1,2호기 시스템 자원공유</td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>생체/모바일OTP/대체</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>4</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>뱅크사인</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>4</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>개인정보암호화</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>3</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>얼굴인증</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>8</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>하나원사인</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>8</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>검역소</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>2</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>하나패스</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>4</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>정상</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+            <tr>
+                <td style='text-align:center; font-weight:bold; border:1px solid black;'>합계</td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'>60</td>
+                <td colspan="2" style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+                <td style='text-align:center; font-weight:normal; border:1px solid black;'></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>AI 요약과 설명</h3>
+
+<div>
+    <p>본 보고서는 기업의 다양한 보안 시스템 현황을 체계적으로 정리한 문서입니다. 네 가지 주요 보안 카테고리, 즉 클라이언트보안, 네트워크보안, 시스템보안, 디지털보안으로 나뉘어 각 시스템의 수량과 정상 가동 여부를 명확히 제시하고 있습니다.</p>
+    <p>각 표는 실시간 시스템 가동 상태를 파악할 수 있도록 구성되어 있으며, 모든 시스템이 정상적으로 작동하고 있음을 강조합니다. 또한, 각 시스템의 특이사항 및 비고란을 통해 추가적인 정보를 제공하고 있습니다.</p>
+    <p>이러한 체계적인 보안 시스템 관리 현황 보고서는 기업의 정보보안 전략을 강화하고, 보안 사고 예방을 위한 중요한 자료로 활용될 수 있습니다.</p>
+</div>
+```</div>
