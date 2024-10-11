@@ -627,6 +627,23 @@ def save_html_response(html_content, folder_name):
         temp_file_path = temp_file.name
 
     return file_name, temp_file_path
+
+# 기간별 보고서 선택시 보고서에서 날짜 추출
+def extract_dates_from_filenames(file_list):
+    # 파일명에서 날짜 추출 (YYYYMMDDHHMMSS 형식 가정, 여기서 YYYYMMDD 부분만 추출)
+    dates = []
+    date_pattern = re.compile(r'\d{8}')  # YYYYMMDD 부분만 추출
+    for file_name in file_list:
+        match = date_pattern.search(file_name)
+        if match:
+            try:
+                date_str = match.group()  # 'YYYYMMDD' 부분 추출
+                date = datetime.datetime.strptime(date_str, "%Y%m%d").date()  # 문자열을 날짜 형식으로 변환
+                dates.append(date)
+            except ValueError:
+                pass  # 날짜 형식이 잘못된 경우 건너뜀
+    return dates
+
     
 # Backend 기능 구현 끝 ---
 
