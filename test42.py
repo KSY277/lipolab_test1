@@ -998,6 +998,38 @@ def home():
 
 def about():
     st.title("기간별 보고서 AI분석")
+    # 보고서 주제 및 폴더 선택, 새 폴더 만들기
+    if github_info_loaded:
+        col1, col2, col3 = st.columns([0.5, 0.3, 0.2])
+      
+        with col1:
+            folder_list = get_folder_list_from_github(st.session_state['github_repo'], st.session_state['github_branch'], st.session_state['github_token'])
+            # st.selectbox 위젯 생성 (이제 session_state['selected_folder'] 사용 가능)
+            #selected_folder = st.selectbox("보고서 주제 리스트", options=["주제를 선택하세요."] + folder_list, key="selected_folder")
+    
+            # 'selected_folder'가 folder_list에 있을 때만 index 설정
+            selected_index = st.session_state['selected_folder_index']
+            if st.session_state['selected_folder_name'] in folder_list:
+                selected_index = folder_list.index(st.session_state['selected_folder_name']) + 1
+            #else:
+                #selected_index = 0  # 기본값으로 '주제를 선택하세요.' 선택
+            st.session_state['selected_folder_index'] = selected_index
+            st.session_state['folder_list_option'] = [folderlist_init_value] + folder_list
+            # 폴더 선택 selectbox 생성 (새 폴더 추가 후, 선택값으로 설정)
+            selected_folder = st.selectbox(
+                "보고서 주제 리스트",
+                options=st.session_state['folder_list_option'],  # 옵션 리스트에 새 폴더 반영
+                index=st.session_state['selected_folder_index'],  # 새로 선택된 폴더를 기본값으로 선택
+                key="selected_folder"
+            )
+            # 파일 업로드와 요청사항 리스트의 기본 폴더 설정
+            if selected_folder != "주제를 선택하세요.":
+                st.session_state['upload_folder'] = f"uploadFiles/{selected_folder}"
+                st.session_state['selected_folder_name'] = f"{selected_folder}"
+                refresh_page()
+                #st.success(f"[{selected_folder}] 보고서가 선택되었습니다.")
+            #else:   
+                #st.warning("보고서 주제를 선택하세요.")    
 
 # 메뉴에 따라 해당하는 함수 호출
 if menu == "보고서 작성 및 AI분석":
