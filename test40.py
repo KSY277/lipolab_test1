@@ -30,7 +30,7 @@ global_generated_prompt = []
 def load_env_info():
     json_data = '''
     {
-        "github_repo": "soryhon/hanachatbot",
+        "github_repo": "KSY277/lipolab_test1",
         "github_branch": "main"
     }
     '''
