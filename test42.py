@@ -1095,23 +1095,24 @@ def about():
                                         html_reports += f"Report: {file}\n{content}\n\n"
                                 
                                 if html_reports:
-                                    # LLM 요청을 execute_llm_request로 처리
+                                    # LLM 요청을 한글로 처리
                                     prompt = f"""
-                                    I have several HTML reports that I would like you to compare and analyze. These reports are as follows:
+                                    여러 HTML 형식의 보고서를 비교하고 분석해 주세요. 이 보고서는 다음과 같습니다:
                                     
                                     {html_reports}
                                     
-                                    Please provide a detailed comparison between these reports, identifying key differences, similarities, and improvements or degradation in the reports' contents. Also, suggest any possible areas for improvement.
+                                    각 보고서의 주요 차이점과 유사점, 개선 사항 또는 퇴보한 점을 상세히 분석해 주세요. 또한, 개선이 필요한 영역에 대한 제안도 포함해 주세요. 응답은 반드시 한국어로 해주세요.
                                     """
                                     analysis_result = execute_llm_request(st.session_state["openai_api_key"], prompt)
                                     if analysis_result:
-                                        st.write("## 비교 분석 결과")
+                                        st.write("## 비교 분석 결과 (한글)")
                                         for idx, result in enumerate(analysis_result):
                                             st.text_area(f"LLM 분석 결과 {idx + 1}:", result, height=300)
                                 else:
                                     st.error("HTML 보고서를 불러오는 중 문제가 발생했습니다.")
                         else:
                             st.warning("선택된 기간 내에 보고서 파일이 없습니다.")
+
 
 
 # 메뉴에 따라 해당하는 함수 호출
