@@ -33,6 +33,8 @@ import yt_dlp
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, NoTranscriptFound
 from pytube import YouTube
 import subprocess
+import sys
+sys.path.append('/path/to/your/module')
 
 # Backend 기능 구현 시작 ---
 
