@@ -29,12 +29,10 @@ from langchain.document_loaders import YoutubeLoader
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-import yt_dlp
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, NoTranscriptFound
 from pytube import YouTube
 import subprocess
-import sys
-sys.path.append('/path/to/your/module')
+
 
 # Backend 기능 구현 시작 ---
 
